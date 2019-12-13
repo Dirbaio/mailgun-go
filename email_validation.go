@@ -2,12 +2,11 @@ package mailgun
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net/http"
 	"os"
 	"strings"
-
-	"github.com/pkg/errors"
 )
 
 // The EmailVerificationParts structure breaks out the basic elements of an email address.

@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
-	"github.com/pkg/errors"
 	"io"
 	"io/ioutil"
 	"mime/multipart"
@@ -273,16 +273,16 @@ func (r *httpRequest) makeRequest(ctx context.Context, method string, payload pa
 	if err != nil {
 		if urlErr, ok := err.(*url.Error); ok {
 			if urlErr.Err == io.EOF {
-				return nil, errors.Wrap(err, "remote server prematurely closed connection")
+				return nil, fmt.Errorf("remote server prematurely closed connection: %w", err)
 			}
 		}
-		return nil, errors.Wrap(err, "while making http request")
+		return nil, fmt.Errorf("while making http request: %w", err)
 	}
 
 	defer resp.Body.Close()
 	responseBody, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		return nil, errors.Wrap(err, "while reading response body")
+		return nil, fmt.Errorf("while reading response body: %w", err)
 	}
 
 	response.Data = responseBody

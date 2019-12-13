@@ -2,13 +2,13 @@ package mailgun_test
 
 import (
 	"context"
+	"fmt"
 	"strings"
 	"testing"
 	"time"
 
 	"github.com/facebookgo/ensure"
 	"github.com/mailgun/mailgun-go/v3"
-	"github.com/pkg/errors"
 )
 
 func TestTemplateCRUD(t *testing.T) {
@@ -86,5 +86,5 @@ func waitForTemplate(mg mailgun.Mailgun, id string) error {
 		return nil
 
 	}
-	return errors.Errorf("Waited to long for template '%s' to show up", id)
+	return fmt.Errorf("Waited to long for template '%s' to show up", id)
 }

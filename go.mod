@@ -7,7 +7,6 @@ require (
 	github.com/facebookgo/subset v0.0.0-20150612182917-8dac2c3c4870 // indirect
 	github.com/go-chi/chi v4.0.0+incompatible
 	github.com/mailru/easyjson v0.0.0-20180823135443-60711f1a8329
-	github.com/pkg/errors v0.8.1
 )
 
 replace github.com/mailgun/mailgun-go/v3/events => ./events
